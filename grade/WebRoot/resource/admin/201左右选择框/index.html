@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="jquery,select,双向选择,列表框" />
+<meta name="description" content="Helloweba演示平台，演示XHTML、CSS、jquery、PHP案例和示例" />
+<title>jQuery实现列表框双向选择操作-Helloweba演示平台</title>
+<link rel="stylesheet" type="text/css" href="../css/main.css" />
+	<style type="text/css">
+		#main{
+			width: 500px;
+		}
+		.demo{width:450px; margin:20px auto}
+		.select_side{float:left; width:200px}
+		 select{width:200px; height:200px;border: 1px solid #404040;font-weight: bold}
+		.select_opt{float:left; width:40px; height:15%; padding-top: 80px;padding-left: 10px;}
+		.select_opt p{width:26px; height:26px; margin-top:6px; background:url(arr.gif) no-repeat; cursor:pointer; text-indent:-999em}
+		.select_opt p#toright{background-position:2px 0}
+		.select_opt p#toleft{background-position:2px -22px}
+		.sub_btn{clear:both; height:42px; line-height:42px; padding-top:10px; text-align:center}
+	</style>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+    var leftSel = $("#selectL");
+	var rightSel = $("#selectR");
+	$("#toright").bind("click",function(){		
+		leftSel.find("option:selected").each(function(){
+			$(this).remove().appendTo(rightSel);
+		});
+	});
+	$("#toleft").bind("click",function(){		
+		rightSel.find("option:selected").each(function(){
+			$(this).remove().appendTo(leftSel);
+		});
+	});
+	leftSel.dblclick(function(){
+		$(this).find("option:selected").each(function(){
+			$(this).remove().appendTo(rightSel);
+		});
+	});
+	rightSel.dblclick(function(){
+		$(this).find("option:selected").each(function(){
+			$(this).remove().appendTo(leftSel);
+		});
+	});
+
+});
+</script>
+</head>
+
+<body>
+	<div id="main">
+	  <h2 align="center">jQuery实现列表框双向选择操作</h2>
+	  <div class="demo">
+		 <div class="select_side">
+		 <p align="center">待选区</p>
+		 <select id="selectL" name="selectL" multiple="multiple">
+			 <option value="13800138000">王新安 - 13800138000</option>
+			 <option value="13800138001">李密 - 13800138001</option>
+			 <option value="13800138002">姜瑜 - 13800138002</option>
+			 <option value="13800138002">钱书记 - 13800138004</option>
+		 </select>
+		 </div>
+		 <div class="select_opt">
+			<p id="toright" title="添加">&gt;</p>
+			<p id="toleft" title="移除">&lt;</p>
+		 </div>
+		 <div class="select_side">
+		 <p align="center">已选区</p>
+		 <select id="selectR" name="selectR" multiple="multiple">
+		 </select>
+		 </div>
+		 <div class="sub_btn"><input type="button" id="sub" value="getValue" /></div>
+	  </div>
+
+	</div>
+
+
+</body>
+</html>

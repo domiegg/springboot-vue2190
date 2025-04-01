@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.project.user.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.project.user.domain.User" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="VARCHAR" />
+    <result column="role" property="role" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="chexing" property="chexing" jdbcType="VARCHAR" />
+    <result column="jsnumber" property="jsnumber" jdbcType="VARCHAR" />
+    <result column="idk" property="idk" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.com.project.user.domain.User" extends="BaseResultMap" >
+    <result column="photo" property="photo" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, account, password, age, role, address, tel, chexing, jsnumber, idk, state
+  </sql>
+  <sql id="Blob_Column_List" >
+    photo
+  </sql>
+  <select id="login" resultMap="ResultMapWithBLOBs" parameterType="map" >
+    select 
+    <include refid="Base_Column_List" />
+    from 
+    admin
+    where 
+    account = #{account} AND password=#{password}
+ </select>
+ <update id="updatePassword" parameterType="cn.com.project.user.domain.User" >
+    update admin
+    set 
+      password = #{password,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from admin
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectUserList" resultMap="ResultMapWithBLOBs" parameterType="cn.com.project.user.domain.User" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from admin
+     <where>
+           <if test="account !=null and account !=''">
+            and account=#{account}
+           </if>
+           <if test="role !=null and role !=''">
+            and role=#{role}
+           </if>
+            <if test="id !=null and id !=''">
+            and id=#{id}
+           </if>
+      </where>
+  </select>
+  <update id="agree" parameterType="cn.com.project.user.domain.User" >
+    update admin
+      set state = #{state,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from admin
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.com.project.user.domain.User" >
+    insert into admin (id, account, password, 
+      age, role, address, 
+      tel, chexing, jsnumber, 
+      idk, state, photo
+      )
+    values (#{id,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{age,jdbcType=VARCHAR}, #{role,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{tel,jdbcType=VARCHAR}, #{chexing,jdbcType=VARCHAR}, #{jsnumber,jdbcType=VARCHAR}, 
+      #{idk,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{photo,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.project.user.domain.User" >
+    insert into admin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="account != null" >
+        account,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="role != null" >
+        role,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="chexing != null" >
+        chexing,
+      </if>
+      <if test="jsnumber != null" >
+        jsnumber,
+      </if>
+      <if test="idk != null" >
+        idk,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="photo != null" >
+        photo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null" >
+        #{role,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="chexing != null" >
+        #{chexing,jdbcType=VARCHAR},
+      </if>
+      <if test="jsnumber != null" >
+        #{jsnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="idk != null" >
+        #{idk,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null" >
+        #{photo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.project.user.domain.User" >
+    update admin
+    <set >
+      <if test="account != null" >
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null" >
+        role = #{role,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="chexing != null" >
+        chexing = #{chexing,jdbcType=VARCHAR},
+      </if>
+      <if test="jsnumber != null" >
+        jsnumber = #{jsnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="idk != null" >
+        idk = #{idk,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null" >
+        photo = #{photo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.com.project.user.domain.User" >
+    update admin
+    set account = #{account,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      age = #{age,jdbcType=VARCHAR},
+      role = #{role,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      chexing = #{chexing,jdbcType=VARCHAR},
+      jsnumber = #{jsnumber,jdbcType=VARCHAR},
+      idk = #{idk,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      photo = #{photo,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.project.user.domain.User" >
+    update admin
+    set account = #{account,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      age = #{age,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      chexing = #{chexing,jdbcType=VARCHAR},
+      jsnumber = #{jsnumber,jdbcType=VARCHAR},
+      idk = #{idk,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

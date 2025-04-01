@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>1-1</title>
+
+<script type="text/javascript" src="jquery-1.9.1.js"></script>
+<script src="fusioncharts.js" type="text/javascript"></script>
+<script src="fusioncharts.charts.js" type="text/javascript"></script>
+<script src="fusioncharts.maps.js" type="text/javascript"></script>
+<script src="fusioncharts.widgets.js" type="text/javascript"></script>
+<script src="fusioncharts.gantt.js" type="text/javascript"></script>
+<script src="fusioncharts.powercharts.js" type="text/javascript"></script>
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>fusioncharts demo</title>
+	<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+</head>
+<body>
+	<div id="chartContainer1"></div>
+	<div id="chartContainer2"></div>
+</body>
+	
+	<script type="text/javascript">
+		/*
+		 * 定义json格式的字符串
+		 * 可作为模板，显示多个图表时进行复用，图表样式统一在chart中设置
+		 * 作为模板，此处未直接定义为一个json对象，避免第一个图表对data进行修改后，
+		 * 第二个图表再次使用json对象时，值已发生变化（每次使用前清除data中元素可解决该问题）。
+		 */
+		var jsondata = '{' +
+		            '"chart":{' +
+		                '"xAxisName":"x",' +
+		                '"yAxisName":"y"' +
+		            '},"data":[]' +
+		        '}';
+		$("document").ready(function(){
+			var jsonobj = JSON.parse(jsondata);
+
+			var elemSet = {"label":"aa","value":10,"color":"76A5DB"};
+			jsonobj.data.push(elemSet);
+			elemSet = {"label":"bb","value":20,"color":"76A5DB"};
+			jsonobj.data.push(elemSet);
+
+			var prefix = "";//./component/fusioncharts/
+			// 生成图表的id用时间标识，解决刷新页面时，报图表id已存在js错误
+			var chart = new FusionCharts(prefix+"Line.swf",new Date().getTime(),"100%",200);
+			// 此处若报js错误：setJSONData，很有可能是fusioncharts.js版本有问题，
+			// 可先使用官网试用版进行测试
+			chart.setJSONData(jsonobj);
+			chart.render("chartContainer1");
+
+			/*
+			 * jquery创建图表的一种方法，
+			 * 若报js错误，可能是fusioncharts.js版本有问题，或jquery-fusioncharts.js未引入，
+			 * 若不报js错误，可能是$("#id")未加#号
+			 */
+			$("#chartContainer2").insertFusionCharts({
+		    	swfUrl:	prefix + "Line.swf",
+		    	dataSource:	jsonobj,
+		    	dataFormat:	"json",
+		    	width:	"100%",
+		    	height:	"200",
+		    	id:	new Date().getTime()
+			});
+		});
+	</script>
+</html>

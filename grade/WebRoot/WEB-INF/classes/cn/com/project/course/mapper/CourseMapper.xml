@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.project.course.mapper.CourseMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.project.course.domain.Course" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="kname" property="kname" jdbcType="VARCHAR" />
+    <result column="a_id" property="aId" jdbcType="INTEGER" />
+    <result column="keshi" property="keshi" jdbcType="VARCHAR" />
+     <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, kname, a_id, keshi, content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from course
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectCouList" resultMap="BaseResultMap" parameterType="cn.com.project.course.domain.Course" >
+    select 
+    c.id,c.kname, c.a_id, c.keshi, c.content,a.account 
+    from course c
+    left join 
+    admin a 
+    on c.a_id = a.id
+     <where>
+           <if test="kname !=null and kname !=''">
+            and kname=#{kname}
+           </if>
+      </where>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from course
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.com.project.course.domain.Course" >
+    insert into course (id, kname, a_id, 
+      keshi, content)
+    values (#{id,jdbcType=INTEGER}, #{kname,jdbcType=VARCHAR}, #{aId,jdbcType=INTEGER}, 
+      #{keshi,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.project.course.domain.Course" >
+    insert into course
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="kname != null" >
+        kname,
+      </if>
+      <if test="aId != null" >
+        a_id,
+      </if>
+      <if test="keshi != null" >
+        keshi,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="kname != null" >
+        #{kname,jdbcType=VARCHAR},
+      </if>
+      <if test="aId != null" >
+        #{aId,jdbcType=INTEGER},
+      </if>
+      <if test="keshi != null" >
+        #{keshi,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.project.course.domain.Course" >
+    update course
+    <set >
+      <if test="kname != null" >
+        kname = #{kname,jdbcType=VARCHAR},
+      </if>
+      <if test="aId != null" >
+        a_id = #{aId,jdbcType=INTEGER},
+      </if>
+      <if test="keshi != null" >
+        keshi = #{keshi,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.project.course.domain.Course" >
+    update course
+    set kname = #{kname,jdbcType=VARCHAR},
+      a_id = #{aId,jdbcType=INTEGER},
+      keshi = #{keshi,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

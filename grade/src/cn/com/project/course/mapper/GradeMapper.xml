@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.project.course.mapper.GradeMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.project.course.domain.Grade" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="c_id" property="cId" jdbcType="INTEGER" />
+    <result column="d_id" property="dId" jdbcType="INTEGER" />
+    <result column="xueqi" property="xueqi" jdbcType="VARCHAR" />
+    <result column="fenshu" property="fenshu" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="kname" property="kname" jdbcType="VARCHAR" />
+    <result column="a_id" property="aId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, c_id, d_id, xueqi, fenshu, content, a_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+     select 
+       g.id,  g.c_id,  g.d_id,  g.xueqi,  g.fenshu,  g.content,  g.a_id,c.kname,a.account
+    from grade g
+    left join admin a
+    on g.a_id = a.id
+    left join course c
+    on g.c_id = c.id
+    where g.id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectGraList" resultMap="BaseResultMap" parameterType="cn.com.project.course.domain.Grade" >
+      select 
+       g.id,  g.c_id,  g.d_id,  g.xueqi,  g.fenshu,  g.content,  g.a_id,c.kname,a.account
+    from grade g
+    left join admin a
+    on g.a_id = a.id
+    left join course c
+    on g.c_id = c.id
+    <where>
+           <if test="account !=null and account !=''">
+            and a.account=#{account}
+           </if>
+           <if test="kname !=null and kname !=''">
+            and c.kname=#{kname}
+           </if>
+           <if test="aId !=null and aId !=''">
+            and g.a_id=#{aId}
+           </if>
+      </where>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from grade
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.com.project.course.domain.Grade" >
+    insert into grade (id, c_id, d_id, 
+      xueqi, fenshu, content, 
+      a_id)
+    values (#{id,jdbcType=INTEGER}, #{cId,jdbcType=INTEGER}, #{dId,jdbcType=INTEGER}, 
+      #{xueqi,jdbcType=VARCHAR}, #{fenshu,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{aId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.project.course.domain.Grade" >
+    insert into grade
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cId != null" >
+        c_id,
+      </if>
+      <if test="dId != null" >
+        d_id,
+      </if>
+      <if test="xueqi != null" >
+        xueqi,
+      </if>
+      <if test="fenshu != null" >
+        fenshu,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="aId != null" >
+        a_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cId != null" >
+        #{cId,jdbcType=INTEGER},
+      </if>
+      <if test="dId != null" >
+        #{dId,jdbcType=INTEGER},
+      </if>
+      <if test="xueqi != null" >
+        #{xueqi,jdbcType=VARCHAR},
+      </if>
+      <if test="fenshu != null" >
+        #{fenshu,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="aId != null" >
+        #{aId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.project.course.domain.Grade" >
+    update grade
+    <set >
+      <if test="cId != null" >
+        c_id = #{cId,jdbcType=INTEGER},
+      </if>
+      <if test="dId != null" >
+        d_id = #{dId,jdbcType=INTEGER},
+      </if>
+      <if test="xueqi != null" >
+        xueqi = #{xueqi,jdbcType=VARCHAR},
+      </if>
+      <if test="fenshu != null" >
+        fenshu = #{fenshu,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="aId != null" >
+        a_id = #{aId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.project.course.domain.Grade" >
+    update grade
+    set
+      d_id = #{dId,jdbcType=INTEGER},
+      xueqi = #{xueqi,jdbcType=VARCHAR},
+      fenshu = #{fenshu,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

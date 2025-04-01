@@ -1,0 +1,136 @@
+/* Load this script using conditional IE comments if you need to support IE 7 and IE 6. */
+
+window.onload = function() {
+	function addIcon(el, entity) {
+		var html = el.innerHTML;
+		el.innerHTML = '<span style="font-family: \'icomoon\'">' + entity + '</span>' + html;
+	}
+	var icons = {
+			'icon-home' : '&#xe000;',
+			'icon-newspaper' : '&#xe001;',
+			'icon-pencil' : '&#xe002;',
+			'icon-address-book' : '&#xe003;',
+			'icon-envelop' : '&#xe004;',
+			'icon-file' : '&#xe005;',
+			'icon-books' : '&#xe006;',
+			'icon-spades' : '&#xe007;',
+			'icon-file-2' : '&#xe008;',
+			'icon-folder-open' : '&#xe009;',
+			'icon-tag' : '&#xe00a;',
+			'icon-notebook' : '&#xe00b;',
+			'icon-location' : '&#xe00c;',
+			'icon-map' : '&#xe00d;',
+			'icon-clock' : '&#xe00e;',
+			'icon-screen' : '&#xe00f;',
+			'icon-undo' : '&#xe010;',
+			'icon-redo' : '&#xe011;',
+			'icon-bubble' : '&#xe012;',
+			'icon-user' : '&#xe014;',
+			'icon-expand' : '&#xe013;',
+			'icon-key' : '&#xe015;',
+			'icon-lock' : '&#xe016;',
+			'icon-wrench' : '&#xe017;',
+			'icon-cog' : '&#xe018;',
+			'icon-remove' : '&#xe019;',
+			'icon-thumbs-up' : '&#xe01a;',
+			'icon-heart' : '&#xe01b;',
+			'icon-bookmark' : '&#xe01c;',
+			'icon-shocked' : '&#xe01d;',
+			'icon-shocked-2' : '&#xe01e;',
+			'icon-checkmark-circle' : '&#xe01f;',
+			'icon-cancel-circle' : '&#xe020;',
+			'icon-info' : '&#xe021;',
+			'icon-info-2' : '&#xe022;',
+			'icon-question' : '&#xe023;',
+			'icon-close' : '&#xe024;',
+			'icon-checkmark' : '&#xe025;',
+			'icon-plus' : '&#xe026;',
+			'icon-minus' : '&#xe027;',
+			'icon-new-tab' : '&#xe028;',
+			'icon-picture' : '&#xe029;',
+			'icon-file-3' : '&#xe02a;',
+			'icon-arrow-left' : '&#xe02b;',
+			'icon-arrow-right' : '&#xe02c;',
+			'icon-sad' : '&#xe02d;',
+			'icon-sad-2' : '&#xe02e;',
+			'icon-list' : '&#xe02f;',
+			'icon-quotes-left' : '&#xe030;',
+			'icon-bars' : '&#xe031;',
+			'icon-book' : '&#xe032;',
+			'icon-image' : '&#xe033;',
+			'icon-calendar-alt-fill' : '&#xe034;',
+			'icon-play' : '&#xe035;',
+			'icon-arrow-right-2' : '&#xe036;',
+			'icon-trashcan' : '&#xe037;',
+			'icon-smiley' : '&#xe038;',
+			'icon-happy' : '&#xe039;',
+			'icon-happy-2' : '&#xe03a;',
+			'icon-clock-2' : '&#xe03b;',
+			'icon-cog-2' : '&#xe03c;',
+			'icon-notes' : '&#xe03d;',
+			'icon-arrow-down' : '&#xe03e;',
+			'icon-download' : '&#xe03f;',
+			'icon-office' : '&#xe040;',
+			'icon-list-2' : '&#xe041;',
+			'icon-columns' : '&#xe042;',
+			'icon-frame' : '&#xe043;',
+			'icon-play-2' : '&#xe044;',
+			'icon-refresh' : '&#xe045;',
+			'icon-redo-2' : '&#xe046;',
+			'icon-undo-2' : '&#xe047;',
+			'icon-checklist' : '&#xe048;',
+			'icon-notes-2' : '&#xe049;',
+			'icon-camera' : '&#xe04a;',
+			'icon-copy' : '&#xe04b;',
+			'icon-copy-2' : '&#xe04c;',
+			'icon-paste' : '&#xe04d;',
+			'icon-alarm' : '&#xe04e;',
+			'icon-bubbles' : '&#xe04f;',
+			'icon-menu' : '&#xe050;',
+			'icon-signup' : '&#xe051;',
+			'icon-power-cord' : '&#xe052;',
+			'icon-html5' : '&#xe053;',
+			'icon-libreoffice' : '&#xe054;',
+			'icon-file-word' : '&#xe055;',
+			'icon-file-excel' : '&#xe056;',
+			'icon-locked' : '&#xe057;',
+			'icon-comment' : '&#xe058;',
+			'icon-switch' : '&#xe059;',
+			'icon-chart' : '&#xe05a;',
+			'icon-search' : '&#xe05b;',
+			'icon-phone' : '&#xe05c;',
+			'icon-wrench-2' : '&#xe05d;',
+			'icon-earth' : '&#xe05e;',
+			'icon-gift' : '&#xe05f;',
+			'icon-flag' : '&#xe060;',
+			'icon-trashcan-2' : '&#xe061;',
+			'icon-list-3' : '&#xe062;',
+			'icon-grid' : '&#xe063;',
+			'icon-winsows' : '&#xe064;',
+			'icon-pen-alt-fill' : '&#xe065;',
+			'icon-left-quote' : '&#xe066;',
+			'icon-right-quote' : '&#xe067;',
+			'icon-checkmark-2' : '&#xe068;',
+			'icon-x' : '&#xe069;',
+			'icon-volume' : '&#xe06b;',
+			'icon-feed' : '&#xe06c;',
+			'icon-feed-2' : '&#xe06d;'
+		},
+		els = document.getElementsByTagName('*'),
+		i, attr, c, el;
+	for (i = 0; ; i += 1) {
+		el = els[i];
+		if(!el) {
+			break;
+		}
+		attr = el.getAttribute('data-icon');
+		if (attr) {
+			addIcon(el, attr);
+		}
+		c = el.className;
+		c = c.match(/icon-[^\s'"]+/);
+		if (c && icons[c[0]]) {
+			addIcon(el, icons[c[0]]);
+		}
+	}
+};

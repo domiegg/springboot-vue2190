@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #ui-upload-input{ position:absolute;height:161px;width:120px;cursor:pointer; opacity:0;filter:alpha(opacity:0);z-index:999;}
+    </style>
+    <script language="javascript" type="text/javascript" src="../My97DatePicker/WdatePicker.js"></script>
+</head>
+<body>
+<form id="picuploadform">
+    <div style="width:1px;position:relative;left:850px;">
+        <div style="position:absolute;left:0;top:-70px;">
+            <img src="/control/cn/images/picture.png"/>
+        </div>
+        <div style="position:absolute;left:16px;top:-70px;">
+            <input type="file" id="ui-upload-input" name="myfile" title="点击后上传图片" onchange="picUpload(this)"/>
+        </div>
+    </div>
+</form>
+<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+        <li><a href="javascript:void(0)">教学管理</a></li>
+        <li><a href="javascript:void(0)">学员模块</a></li>
+        <li><a href="javascript:void(0)">学生信息</a></li>
+        <li><a href="javascript:void(0)">添加学生信息</a></li>
+    </ul>
+</div>
+<div class="formbody">
+    <form id="stuinfoForm">
+        <div class="formtitle"><span>基本信息 <font color="red">*必填</font></span></div>
+        <table width="90%">
+            <tr>
+                <td class="head"><span>姓名：</span></td>
+                <td class="content"><input type="text" name="stuname"/></td>
+                <td class="head"><span>学员状态：</span></td>
+                <td class="content">
+                    <select name="studentstatus">
+                            <option value="1">在读</option>
+                            <option value="1">休学</option>
+                    </select>
+                </td>
+                <td class="head"><span>性别：</span></td>
+                <td class="content">
+                    <div class="radio">
+                        <input type="radio" name="sex" value="1" checked="checked"/>&nbsp;男&nbsp;&nbsp;
+                        <input type="radio" name="sex" value="0"/>&nbsp;女
+                    </div>
+                </td>
+                <td class="head" rowspan="4"><span>照片：</span></td>
+                <td rowspan="4">
+                    &nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td class="head"><span>身份证：</span></td>
+                <td class="content"><input type="text" name="idcoursed"/></td>
+                <td class="head"><span>出生日期：</span></td>
+                <td class="content">
+                    <input type="text" name="birthday" readonly="readonly" class="Wdate" id="d122" onClick="WdatePicker({skin:'default'})"/>
+                </td>
+                <td class="head"><span>入学年份：</span></td>
+                <td class="content">
+                    <input type="text" name="inschoolyear" readonly="readonly" class="Wdate" id="d123" onClick="WdatePicker({skin:'default'})"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="head"><span>班级类别：</span></td>
+                <td class="content">
+                    <select name="classtype">
+                        <option value="1">Java</option>
+                        <option value="2">美工</option>
+                    </select>
+                </td>
+                <td class="head"><span>四海班号：</span></td>
+                <td class="content" colspan="3">
+                    <select class="shortSelect" name="shxtyear" id="shxtyear" onchange="classNumberForAjax()">
+                        <option value="1">凌云12</option>
+                        <option value="2">凌云13</option>
+                    </select>
+                    <select class="shortSelect" name="shxtnumber" id="shxtnumber"></select>
+                </td>
+            </tr>
+            <tr>
+                <td class="head"><span>手机：</span></td>
+                <td class="content"><input type="text" name="telephone"/></td>
+                <td class="head"><span>微信：</span></td>
+                <td class="content"><input type="text" name="wechat"/></td>
+                <td class="head"><span>QQ：</span></td>
+                <td class="content"><input type="text" name="qq"/></td>
+            </tr>
+            <tr>
+                <td class="head"><span>规划师：</span></td>
+                <td class="content">
+                    <select name="vocationmaster">
+                        <option value="1">凌云12</option>
+                        <option value="2">凌云13</option>
+                    </select>
+                </td>
+                <td class="head"><span>付款方式：</span></td>
+                <td class="content">
+                    <select name="modeofpayment">
+                        <option selected="selected" value="1">现金全款</option>
+                        <option value="2">现金分期</option>
+                        <option value="3">贷款</option>
+                    </select>
+                </td>
+                <td class="head"></td>
+                <td class="content"></td>
+                <td class="head"></td>
+                <td class="content"></td>
+            </tr>
+        </table>
+        <div class="formtitle"><span>详细信息 <font color="red">*选填</font></span></div>
+        <table width="90%">
+            <tr>
+                <td class="head"><span>学制：</span></td>
+                <td class="content">
+                    <select name="schoolsystem">
+                        <option value="1">凌云12</option>
+                        <option value="2">凌云13</option>
+                    </select>
+                </td>
+                <td class="head"><span>所在学校：</span></td>
+                <td class="content">
+                    <select name="university">
+                        <option value="1">凌云12</option>
+                        <option value="2">凌云13</option>
+                    </select>
+                </td>
+                <td class="head"><span>所学专业：</span></td>
+                <td class="content">
+                    <select name="college">
+                        <option value="1">凌云12</option>
+                        <option value="2">凌云13</option>
+                    </select>
+                </td>
+                <td class="head"><span>在校班级：</span></td>
+                <td class="content"><input type="text" name="classschool"/></td>
+            </tr>
+            <tr>
+                <td class="head"><span>在校职务：</span></td>
+                <td class="content"><input type="text" name="functionschool"/></td>
+                <td class="head"><span>班级职务：</span></td>
+                <td class="content"><input type="text" name="functionclass"/></td>
+                <td class="head"><span>籍贯：</span></td>
+                <td class="content" colspan="3">
+                    <select name="province" id="province" onchange="cityForAjax()">
+                            <<option value="1">凌云12</option>
+                            <option value="2">凌云13</option>
+                    </select>
+                    <select name="city" id="city"></select>
+                </td>
+            </tr>
+            <tr>
+                <td class="head"><span>亲属电话：</span></td>
+                <td class="content"><input type="text" name="relativesphone"/></td>
+                <td class="head"><span></span></td>
+                <td class="content"></td>
+                <td class="head"><span></span></td>
+                <td class="content" colspan="3"></td>
+            </tr>
+        </table>
+        <input type="button" class="btn_right" value="确认保存" />
+    </form>
+</div>
+
+</body>
+</html>

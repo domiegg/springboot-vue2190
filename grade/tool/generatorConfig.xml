@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE generatorConfiguration  
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<!-- 在MBG工作的时候，需要额外加载的依赖包 location属性指明加载jar/zip包的全路径 -->
+	<classPathEntry location="mysql-connector-java-5.1.25-bin.jar" />
+	<!-- context:生成一组对象的环境 id:必选，上下文id，用于在生成错误时提示 defaultModelType:指定生成对象的样式 
+		1，conditional：类似hierarchical； 2，flat：所有内容（主键，blob）等全部生成在一个对象中； 3，hierarchical：主键生成一个XXKey对象(key 
+		class)，Blob等单独生成一个对象，其他简单属性在一个对象中(record class) targetRuntime: 1，MyBatis3：默认的值，生成基于MyBatis3.x以上版本的内容，包括XXXBySample； 
+		2，MyBatis3Simple：类似MyBatis3，只是不生成XXXBySample； introspectedColumnImpl：类全限定名，用于扩展MBG -->
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<!-- 自动识别数据库关键字，默认false，如果设置为true，根据SqlReservedWords中定义的关键字列表； 一般保留默认值，遇到数据库关键字（Java关键字），使用columnOverride覆盖 -->
+			<!-- <property name="suppressDate" value="false" /> -->
+			<!-- 生成的Java文件的编码 -->
+			<!-- <property name="javaFileEncoding" value="UTF-8" /> -->
+			<!-- 格式化java代码 -->
+			<!-- <property name="javaFormatter"
+				value="org.mybatis.generator.api.dom.DefaultJavaFormatter" /> -->
+			<!-- 格式化XML代码 -->
+			<!-- <property name="xmlFormatter"
+				value="org.mybatis.generator.api.dom.DefaultXmlFormatter" /> -->
+			<!-- beginningDelimiter和endingDelimiter：指明数据库的用于标记数据库对象名的符号，比如ORACLE就是双引号，MYSQL默认是`反引号； -->
+			<!-- <property name="beginningDelimiter" value="`" />
+			<property name="endingDelimiter" value="`" /> -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		<!-- 加载数据库驱动，填写相关的连接属性 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://127.0.0.1:3308/wuliu" userId="root"
+			password="mysql">
+		</jdbcConnection>
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		<!-- 自动生成实体类的位置，enableSubPackages==true=>如果不存在具体包的话，会自动创建 -->
+		<!-- targetProject属性为创建的文件的根目录路径，可以为绝对路径，也可以为相对路径 -->
+		<javaModelGenerator targetPackage="cn.com.project.course.domain" targetProject="../src">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<!-- 自动生成映射文件（即对应的xml文件）的位置，enableSubPackages==true=>如果不存在具体包的话，会自动创建 -->
+		<sqlMapGenerator targetPackage="cn.com.project.course.mapping" targetProject="../src">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		<!-- 自动生成数据操作接口的位置，enableSubPackages==true=>如果不存在具体包的话，会自动创建 -->
+		<javaClientGenerator type="XMLMAPPER" targetPackage="cn.com.project.course.mapper" targetProject="../src">
+			<property name="enableSubPackages" value="true" />
+			<property name="rootInterface" value=""/>
+		</javaClientGenerator>
+		<!-- 数据源 填写想要操作的表名，以及生成的对象的名 -->
+		<table tableName="course" domainObjectName="Course"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+	</context>
+</generatorConfiguration>  

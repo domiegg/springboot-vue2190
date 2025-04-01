@@ -1,0 +1,367 @@
+@font-face {
+	font-family: 'icomoon';
+	src:url('fonts/icomoon.eot');
+	src:url('fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+		url('fonts/icomoon.woff') format('woff'),
+		url('fonts/icomoon.ttf') format('truetype'),
+		url('fonts/icomoon.svg#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Use the following CSS code if you want to use data attributes for inserting your icons */
+[data-icon]:before {
+	font-family: 'icomoon';
+	content: attr(data-icon);
+	speak: none;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* Use the following CSS code if you want to have a class per icon */
+/*
+Instead of a list of all class selectors,
+you can use the generic selector below, but it's slower:
+[class*="icon-"] {
+*/
+.icon-home, .icon-newspaper, .icon-pencil, .icon-address-book, .icon-envelop, .icon-file, .icon-books, .icon-spades, .icon-file-2, .icon-folder-open, .icon-tag, .icon-notebook, .icon-location, .icon-map, .icon-clock, .icon-screen, .icon-undo, .icon-redo, .icon-bubble, .icon-user, .icon-expand, .icon-key, .icon-lock, .icon-wrench, .icon-cog, .icon-remove, .icon-thumbs-up, .icon-heart, .icon-bookmark, .icon-shocked, .icon-shocked-2, .icon-checkmark-circle, .icon-cancel-circle, .icon-info, .icon-info-2, .icon-question, .icon-close, .icon-checkmark, .icon-plus, .icon-minus, .icon-new-tab, .icon-picture, .icon-file-3, .icon-arrow-left, .icon-arrow-right, .icon-sad, .icon-sad-2, .icon-list, .icon-quotes-left, .icon-bars, .icon-book, .icon-image, .icon-calendar-alt-fill, .icon-play, .icon-arrow-right-2, .icon-trashcan, .icon-smiley, .icon-happy, .icon-happy-2, .icon-clock-2, .icon-cog-2, .icon-notes, .icon-arrow-down, .icon-download, .icon-office, .icon-list-2, .icon-columns, .icon-frame, .icon-play-2, .icon-refresh, .icon-redo-2, .icon-undo-2, .icon-checklist, .icon-notes-2, .icon-camera, .icon-copy, .icon-copy-2, .icon-paste, .icon-alarm, .icon-bubbles, .icon-menu, .icon-signup, .icon-power-cord, .icon-html5, .icon-libreoffice, .icon-file-word, .icon-file-excel, .icon-locked, .icon-comment, .icon-switch, .icon-chart, .icon-search, .icon-phone, .icon-wrench-2, .icon-earth, .icon-gift, .icon-flag, .icon-trashcan-2, .icon-list-3, .icon-grid, .icon-winsows, .icon-pen-alt-fill, .icon-left-quote, .icon-right-quote, .icon-checkmark-2, .icon-x, .icon-volume, .icon-feed, .icon-feed-2 {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+.icon-home:before {
+	content: "\e000";
+}
+.icon-newspaper:before {
+	content: "\e001";
+}
+.icon-pencil:before {
+	content: "\e002";
+}
+.icon-address-book:before {
+	content: "\e003";
+}
+.icon-envelop:before {
+	content: "\e004";
+}
+.icon-file:before {
+	content: "\e005";
+}
+.icon-books:before {
+	content: "\e006";
+}
+.icon-spades:before {
+	content: "\e007";
+}
+.icon-file-2:before {
+	content: "\e008";
+}
+.icon-folder-open:before {
+	content: "\e009";
+}
+.icon-tag:before {
+	content: "\e00a";
+}
+.icon-notebook:before {
+	content: "\e00b";
+}
+.icon-location:before {
+	content: "\e00c";
+}
+.icon-map:before {
+	content: "\e00d";
+}
+.icon-clock:before {
+	content: "\e00e";
+}
+.icon-screen:before {
+	content: "\e00f";
+}
+.icon-undo:before {
+	content: "\e010";
+}
+.icon-redo:before {
+	content: "\e011";
+}
+.icon-bubble:before {
+	content: "\e012";
+}
+.icon-user:before {
+	content: "\e014";
+}
+.icon-expand:before {
+	content: "\e013";
+}
+.icon-key:before {
+	content: "\e015";
+}
+.icon-lock:before {
+	content: "\e016";
+}
+.icon-wrench:before {
+	content: "\e017";
+}
+.icon-cog:before {
+	content: "\e018";
+}
+.icon-remove:before {
+	content: "\e019";
+}
+.icon-thumbs-up:before {
+	content: "\e01a";
+}
+.icon-heart:before {
+	content: "\e01b";
+}
+.icon-bookmark:before {
+	content: "\e01c";
+}
+.icon-shocked:before {
+	content: "\e01d";
+}
+.icon-shocked-2:before {
+	content: "\e01e";
+}
+.icon-checkmark-circle:before {
+	content: "\e01f";
+}
+.icon-cancel-circle:before {
+	content: "\e020";
+}
+.icon-info:before {
+	content: "\e021";
+}
+.icon-info-2:before {
+	content: "\e022";
+}
+.icon-question:before {
+	content: "\e023";
+}
+.icon-close:before {
+	content: "\e024";
+}
+.icon-checkmark:before {
+	content: "\e025";
+}
+.icon-plus:before {
+	content: "\e026";
+}
+.icon-minus:before {
+	content: "\e027";
+}
+.icon-new-tab:before {
+	content: "\e028";
+}
+.icon-picture:before {
+	content: "\e029";
+}
+.icon-file-3:before {
+	content: "\e02a";
+}
+.icon-arrow-left:before {
+	content: "\e02b";
+}
+.icon-arrow-right:before {
+	content: "\e02c";
+}
+.icon-sad:before {
+	content: "\e02d";
+}
+.icon-sad-2:before {
+	content: "\e02e";
+}
+.icon-list:before {
+	content: "\e02f";
+}
+.icon-quotes-left:before {
+	content: "\e030";
+}
+.icon-bars:before {
+	content: "\e031";
+}
+.icon-book:before {
+	content: "\e032";
+}
+.icon-image:before {
+	content: "\e033";
+}
+.icon-calendar-alt-fill:before {
+	content: "\e034";
+}
+.icon-play:before {
+	content: "\e035";
+}
+.icon-arrow-right-2:before {
+	content: "\e036";
+}
+.icon-trashcan:before {
+	content: "\e037";
+}
+.icon-smiley:before {
+	content: "\e038";
+}
+.icon-happy:before {
+	content: "\e039";
+}
+.icon-happy-2:before {
+	content: "\e03a";
+}
+.icon-clock-2:before {
+	content: "\e03b";
+}
+.icon-cog-2:before {
+	content: "\e03c";
+}
+.icon-notes:before {
+	content: "\e03d";
+}
+.icon-arrow-down:before {
+	content: "\e03e";
+}
+.icon-download:before {
+	content: "\e03f";
+}
+.icon-office:before {
+	content: "\e040";
+}
+.icon-list-2:before {
+	content: "\e041";
+}
+.icon-columns:before {
+	content: "\e042";
+}
+.icon-frame:before {
+	content: "\e043";
+}
+.icon-play-2:before {
+	content: "\e044";
+}
+.icon-refresh:before {
+	content: "\e045";
+}
+.icon-redo-2:before {
+	content: "\e046";
+}
+.icon-undo-2:before {
+	content: "\e047";
+}
+.icon-checklist:before {
+	content: "\e048";
+}
+.icon-notes-2:before {
+	content: "\e049";
+}
+.icon-camera:before {
+	content: "\e04a";
+}
+.icon-copy:before {
+	content: "\e04b";
+}
+.icon-copy-2:before {
+	content: "\e04c";
+}
+.icon-paste:before {
+	content: "\e04d";
+}
+.icon-alarm:before {
+	content: "\e04e";
+}
+.icon-bubbles:before {
+	content: "\e04f";
+}
+.icon-menu:before {
+	content: "\e050";
+}
+.icon-signup:before {
+	content: "\e051";
+}
+.icon-power-cord:before {
+	content: "\e052";
+}
+.icon-html5:before {
+	content: "\e053";
+}
+.icon-libreoffice:before {
+	content: "\e054";
+}
+.icon-file-word:before {
+	content: "\e055";
+}
+.icon-file-excel:before {
+	content: "\e056";
+}
+.icon-locked:before {
+	content: "\e057";
+}
+.icon-comment:before {
+	content: "\e058";
+}
+.icon-switch:before {
+	content: "\e059";
+}
+.icon-chart:before {
+	content: "\e05a";
+}
+.icon-search:before {
+	content: "\e05b";
+}
+.icon-phone:before {
+	content: "\e05c";
+}
+.icon-wrench-2:before {
+	content: "\e05d";
+}
+.icon-earth:before {
+	content: "\e05e";
+}
+.icon-gift:before {
+	content: "\e05f";
+}
+.icon-flag:before {
+	content: "\e060";
+}
+.icon-trashcan-2:before {
+	content: "\e061";
+}
+.icon-list-3:before {
+	content: "\e062";
+}
+.icon-grid:before {
+	content: "\e063";
+}
+.icon-winsows:before {
+	content: "\e064";
+}
+.icon-pen-alt-fill:before {
+	content: "\e065";
+}
+.icon-left-quote:before {
+	content: "\e066";
+}
+.icon-right-quote:before {
+	content: "\e067";
+}
+.icon-checkmark-2:before {
+	content: "\e068";
+}
+.icon-x:before {
+	content: "\e069";
+}
+.icon-volume:before {
+	content: "\e06b";
+}
+.icon-feed:before {
+	content: "\e06c";
+}
+.icon-feed-2:before {
+	content: "\e06d";
+}

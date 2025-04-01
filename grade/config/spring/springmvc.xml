@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+	<!-- 排除静态资源 -->
+	<mvc:default-servlet-handler />
+    
+	<!-- 启动注解 -->
+	<mvc:annotation-driven/>
+	<!-- 扫描包注解 -->
+	<context:component-scan base-package="cn.com.project.**.controller"/> 
+	<context:component-scan base-package="cn.com.project.**.service" />
+		
+	<!-- 配置默认欢迎界面 -->
+	<mvc:view-controller path="/" view-name="login" />
+	<!-- 上传的配置 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- setDefaultEncoding("UTF-8") -->
+		<!-- 配置编码格式 -->
+		<property name="defaultEncoding" value="UTF-8" />
+		<!-- 文件上传的最大值 -->
+		<property name="maxUploadSize" value="10485760" />
+		<!-- 配置缓存 -->
+		<property name="maxInMemorySize" value="4096" />
+		<!-- 临时目录 -->
+		<property name="uploadTempDir" value="shxt" />
+	</bean>
+	<!--配置视图解释器 -->
+	<bean           
+        class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
+        <!-- 配置 jsp 路径的前缀  -->     
+        <property name="prefix" value="/index/" /> 
+        <!-- 配置 jsp 路径的后缀  -->
+        <property name="suffix" value=".jsp" />     
+    </bean> 
+	<!-- 简单的异常处理 -->
+	<bean id="handlerExceptionResolver"
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="java.lang.Exception">error</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- 配置Session拦截器 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<!-- 要过滤的路径 -->
+			 <mvc:mapping path="/web/oper/**"/>
+			 <!-- 要排除的路径 -->
+        	<mvc:exclude-mapping path="/web/goods/**"/>
+        	<mvc:exclude-mapping path="/web/user/**"/>
+        	<mvc:exclude-mapping path="/web/guolv/**"/>
+    		<bean class="cn.com.project.util.SessionInterceptor"/>
+   		 </mvc:interceptor>
+	</mvc:interceptors>
+	
+</beans>

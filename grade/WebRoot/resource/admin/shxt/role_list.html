@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>角色管理</title>
+    <link href="../css/style.css" rel="stylesheet" type="text/css"/>
+    <!-- 引入JQuery支持的库 -->
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <!-- 引入artDailog支持的库 -->
+    <link rel="stylesheet" href="../artDialog/css/ui-dialog.css">
+    <script src="../artDialog/dist/dialog-plus.js"></script>
+
+    <script language="javascript">
+        $(function () {
+            //导航切换
+            $(".imglist li").click(function () {
+                $(".imglist li.selected").removeClass("selected")
+                $(this).addClass("selected");
+            })
+        })
+    </script>
+
+    <!-- 关于功能测试代码 -->
+    <script type="text/javascript">
+        function toAddDialog(){
+            //测试artDialog是否成功
+            //成功需要注意jquery的版本必须是1.7+以上
+            var d = top.dialog({
+                id:"rightFrame",
+                width:700,
+                height:500,
+                title: '欢迎',
+                url:'shxt/add.html',//可以是一个访问路径Action|Servlet等或者jsp页面资源
+                onclose: function () {
+                if (this.returnValue) {
+                    alert(this.returnValue);
+                }
+
+            }
+            });
+            d.showModal();
+        }
+
+
+        //变更状态方法
+        function toChangeStatus(){
+            var d = dialog({
+                title: '提示',
+                content: '按钮回调函数返回 false 则不许关闭',
+                okValue: '确定',
+                ok: function () {
+                    this.title('提交中…');
+                    return false;
+                },
+                cancelValue: '取消',
+                cancel: function () {}
+            });
+            d.show();
+        }
+
+
+
+    </script>
+
+</head>
+
+
+<body>
+
+<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+        <li>角色管理</li>
+    </ul>
+</div>
+
+<div class="rightinfo">
+
+    <div class="tools">
+        <ul class="toolbar">
+
+            <li class="click" onclick="toAddDialog()"><span><img src="../images/t01.png"/></span>新建角色</li>
+        </ul>
+
+    </div>
+
+
+    <ul class="imglist">
+
+        <li class="selected">
+            <span><img src="../images/img01.png"/></span>
+
+            <h2><a href="#">软件界面设计下载</a></h2>
+
+            <p><a href="#">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="toChangeStatus()">变更</a></p>
+
+            <p><a href="#">注销</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">授权</a></p>
+        </li>
+
+        <li>
+            <span><img src="../images/img02.png"/></span>
+
+            <h2><a href="#">界面样式素材下载</a></h2>
+
+            <p><a href="#">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="toChangeStatus()">变更</a></p>
+            <p><a href="#">注销</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">授权</a></p>
+        </li>
+
+        <li>
+            <span><img src="../images/img03.png"/></span>
+
+            <h2><a href="#">弹出小窗口界面设计教程</a></h2>
+
+            <p><a href="#">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="toChangeStatus()">变更</a></p>
+            <p><a href="#">注销</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">授权</a></p>
+        </li>
+
+        <li>
+            <span><img src="../images/img04.png"/></span>
+
+            <h2><a href="#">羽毛图标设计教程</a></h2>
+
+            <p><a href="#">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="toChangeStatus()">变更</a></p>
+            <p><a href="#">注销</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">授权</a></p>
+        </li>
+
+        <li>
+            <span><img src="../images/img05.png"/></span>
+
+            <h2><a href="#">日历组件样式设计</a></h2>
+
+            <p><a href="#">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="toChangeStatus()">变更</a></p>
+            <p><a href="#">注销</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">授权</a></p>
+        </li>
+
+        <li>
+            <span><img src="../images/img06.png"/></span>
+
+            <h2><a href="#">羽毛图标设计教程</a></h2>
+
+            <p><a href="#">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="toChangeStatus()">变更</a></p>
+            <p><a href="#">注销</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">授权</a></p>
+        </li>
+
+        <li>
+            <span><img src="../images/img07.png"/></span>
+
+            <h2><a href="#">弹出小窗口界面设计教程</a></h2>
+
+            <p><a href="#">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="toChangeStatus()">变更</a></p>
+            <p><a href="#">注销</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">授权</a></p>
+        </li>
+
+        <li>
+            <span><img src="../images/img08.png"/></span>
+
+            <h2><a href="#">弹出小窗口界面设计教程</a></h2>
+
+            <p><a href="#">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="toChangeStatus()">变更</a></p>
+            <p><a href="#">注销</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">授权</a></p>
+        </li>
+
+        <li>
+            <span><img src="../images/img09.png"/></span>
+
+            <h2><a href="#">弹出小窗口界面设计教程</a></h2>
+
+            <p><a href="#">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="toChangeStatus()">变更</a></p>
+            <p><a href="#">注销</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">授权</a></p>
+        </li>
+
+        <li>
+            <span><img src="../images/img10.png"/></span>
+
+            <h2><a href="#">软件界面设计下载</a></h2>
+
+            <p><a href="#">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="toChangeStatus()">变更</a></p>
+            <p><a href="#">注销</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">授权</a></p>
+        </li>
+
+    </ul>
+
+
+</div>
+
+
+</body>
+
+</html>
